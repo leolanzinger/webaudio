@@ -6,22 +6,23 @@ $( "#volume-slider" ).slider({
   }
 });
 
-// DRAG AND DROP AUDIO SAMPLE
-Dropzone.options.dropzone = {
-  paramName: "file", // The name that will be used to transfer the file
-  maxFilesize: 0,
-  acceptedFiles: ".wav, .mp3, .wma, .mp4, .aiff, .aac",
-  accept: function(file, done) {
-    if (file.name == "justinbieber.jpg") {
-      done("Naha, you don't.");
-    }
-    else { done(); }
-  }
-};
+// JQUERY SAMPLE UPLOAD
+$("#file").change(function(el) {
+  var file    = document.querySelector('input[type=file]').files[0];
 
-/*dropzone.on("complete", function(file) {
-  dropzone.removeFile(file);
-});*/
+  $('.panel-waveform label.wave-label').html($(this).val().substring($(this).val().lastIndexOf("\\") + 1));
+  var reader  = new FileReader();
+
+  reader.addEventListener("load", function () {
+    sound_url = reader.result;
+    wavesurfer.load(sound_url);
+    init();
+  }, false);
+
+  if (file) {
+    reader.readAsDataURL(file);
+  }
+});
 
 // set sampler variables
 var sound_url = 'assets/audio/flute/C4.wav';
@@ -38,6 +39,7 @@ var wavesurfer = WaveSurfer.create({
 $(document).ready(function() {
   // LOAD AUDIO WAVEFORM
   wavesurfer.load(sound_url);
+  $('.panel-waveform label.wave-label').html(sound_url.substring(sound_url.lastIndexOf("/") + 1));
 
   // KEYBOARD BINDING
   $(document).keydown(function(e) {
@@ -202,7 +204,6 @@ function init() {
   });
   }
   getSound.send();
-  $('.panel-waveform label').append(sound_url.substring(sound_url.lastIndexOf("/") + 1));
 }
 
 function playSound(oct, pitch) {  // polyphony
@@ -232,7 +233,6 @@ function stopSound(oct, pitch) {
 }
 
 changeVolume = function(value) {
-  console.log('change volume ' + value);
   var fraction = parseInt(value) / 100;
   gainNode.forEach(function(element) {
     if (element != null) {
