@@ -1,3 +1,11 @@
+// JQUERY UI WIDGETS
+$( "#volume-slider" ).slider({
+  value: 100,
+  slide: function( event, ui ) {
+    changeVolume(ui.value)
+  }
+});
+
 // DRAG AND DROP AUDIO SAMPLE
 Dropzone.options.dropzone = {
   paramName: "file", // The name that will be used to transfer the file
@@ -20,8 +28,8 @@ var sound_url = 'assets/audio/flute/C4.wav';
 var oct = 2;
 var wavesurfer = WaveSurfer.create({
     container: '#waveform',
-    waveColor: '#999',
-    progressColor: '#444',
+    waveColor: '#ecf0f1',
+    progressColor: '#bdc3c7',
     barWidth: '2',
     cursorWidth: '0',
     height: '100'
@@ -166,13 +174,13 @@ function setOctave() {
 
 // flash pressed note
 function noteDown(note, pitch) {
-  $('#oct-' + oct + ' .' + note).css({'background-color' : '#fefa4a'});
+  $('#oct-' + oct + ' .' + note).css({'background-color' : '#e74c3c'});
   playSound(oct, pitch);
 }
 
 // flash up note
 function noteUp(note, pitch) {
-  $('#oct-' + oct + ' .' + note).css({'background-color' : '#fff'});
+  $('#oct-' + oct + ' .' + note).css({'background-color' : '#ecf0f1'});
   stopSound(oct, pitch);
 }
 
@@ -180,9 +188,9 @@ function noteUp(note, pitch) {
 window.onload = init;
 var context;
 var source = [];
+var gainNode = [];
 
 function init() {
-  // Fix up prefixing
   window.AudioContext = window.AudioContext || window.webkitAudioContext;
   context = new AudioContext();
   var getSound = new XMLHttpRequest();
@@ -194,27 +202,41 @@ function init() {
   });
   }
   getSound.send();
+  $('.panel-waveform label').append(sound_url.substring(sound_url.lastIndexOf("/") + 1));
 }
 
-
-function playSound(oct, pitch) {  //polyphony
-  var semitones = ((oct - 2) * 12) + pitch;
-  if (source[semitones] == null) {
-    source[semitones] = context.createBufferSource();
-    source[semitones].buffer = audio_buffer;
-    source[semitones].detune.value = semitones * 100;
-    var gainNode = context.createGain();
-    // Connect the source to the gain node.
-    source[semitones].connect(gainNode);
-    // Connect the gain node to the destination.
-    gainNode.connect(context.destination);
-    gainNode.gain.value = 0.6;
-    source[semitones].start(0);
+function playSound(oct, pitch) {  // polyphony
+  var semitones = ((oct - 2) * 12) + pitch; // sample root is in C
+  var semitones_index = semitones + 12; // no negative indexes
+  if (source[semitones_index] == null) {
+    source[semitones_index] = context.createBufferSource();
+    source[semitones_index].buffer = audio_buffer;
+    source[semitones_index].detune.value = semitones * 100; // detune sound sample
+    gainNode[semitones_index] = context.createGain();
+    source[semitones_index].connect(gainNode[semitones_index]);
+    gainNode[semitones_index].connect(context.destination);
+    gainNode[semitones_index].gain.value = parseInt($('#volume-slider').slider( "value" )) / 100; // sample volume
+    source[semitones_index].start(0);
   }
 }
 
 function stopSound(oct, pitch) {
   var semitones = ((oct - 2) * 12) + pitch;
-  source[semitones].stop();
-  source[semitones] = null;
+  var semitones_index = semitones + 12;
+  // fade out stop
+  gainNode[semitones_index].gain.setTargetAtTime(0, context.currentTime, 0.015);
+  setTimeout(function() {
+    source[semitones_index].stop();
+    source[semitones_index] = null;
+  }, 50);
 }
+
+changeVolume = function(value) {
+  console.log('change volume ' + value);
+  var fraction = parseInt(value) / 100;
+  gainNode.forEach(function(element) {
+    if (element != null) {
+      element.gain.value = fraction * fraction;
+    }
+  });
+};

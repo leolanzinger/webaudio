@@ -2,6 +2,8 @@
 <html>
 <head>
   <title>Sampler</title>
+  <link rel="stylesheet" href="css/jquery-ui.min.css" />
+  <link rel="stylesheet" href="css/jquery-ui.structure.min.css" />
   <link rel="stylesheet" href="css/sampler.css" />
 </head>
 <body>
@@ -18,9 +20,17 @@
   <div class="panel-waveform">
     <div id="waveform">
     </div>
+    <label>
+    </label>
   </div>
 
   <div class="panel-controls">
+    <div class="knob-panel">
+      <div class="volume knob-element">
+        <div id="volume-slider"></div>
+        <label>Volume</label>
+      </div>
+    </div>
     <div class="midi-panel">
       <div id="oct-1" class="midi-oct">
         <div class="midi-selected"></div>
@@ -77,6 +87,7 @@
   </div>
 </div>
   <script src="js/jquery-3.1.1.min.js"></script>
+  <script src="js/jquery-ui.min.js"></script>
   <script src="js/dropzone.js"></script>
   <script src="//cdnjs.cloudflare.com/ajax/libs/wavesurfer.js/1.0.52/wavesurfer.min.js"></script>
   <script src="js/bufferloader.js"></script>
