@@ -1,0 +1,84 @@
+body, html {
+  display: block;
+  height: 100vh;
+  width: 100vh;
+}
+
+* {
+  font-family: 'Helvetica Neue', helvetica, sans-serif;
+}
+
+.panel {
+  position: absolute;
+  display: block;
+  box-sizing: border-box;
+  top: 40px;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  width: 900px;
+  padding: 0 20px 20px 20px;
+  border-radius: 5px;
+  background-color: #efefef;
+}
+
+.panel-title h1 {
+  font-size: 3em;
+  font-weight: 200;
+  color: white;
+  margin: 0;
+}
+
+.panel-waveform {
+  box-sizing: border-box;
+  width: 860px;
+  padding: 10px;
+  background-color: #fff;
+  justify-content: center;
+  align-items: center;
+  color: #444;
+}
+
+#waveform {
+  width: 840px;
+}
+
+.panel-controls {
+  margin-top: 20px;
+}
+
+.midi-panel {
+  display: flex;
+  justify-content: space-around;
+}
+
+.midi-oct {
+  width: 282px;
+}
+
+.midi-selected {
+  width: 100%;
+  height: 10px;
+  margin-bottom: 10px;
+  background-color: white;
+}
+
+.midi-selected.selected {
+  background-color: #fefa4a;
+}
+
+.midi-notes {
+  width: 100%;
+  float: left;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;;
+
+}
+
+.midi-note {
+  position: relative;
+  width: 20px;
+  height: 20px;
+  background-color: white;
+}
