@@ -24,16 +24,30 @@ $("#file").change(function(el) {
   }
 });
 
+
+// show - unshow keyboard
+$('#toggle-keyboard').click(function() {
+  $('.show-keyboard').toggleClass('hidden-keyboard');
+  $(this).find('#toggle-key-icon').toggleClass('fa-chevron-up fa-chevron-down');
+});
+
 // set sampler variables
 var sound_url = 'assets/audio/flute/C4.wav';
 var oct = 2;
+var start_pos = 0;
 var wavesurfer = WaveSurfer.create({
     container: '#waveform',
     waveColor: '#ecf0f1',
-    progressColor: '#bdc3c7',
+    progressColor: '#2c3e50',
     barWidth: '2',
-    cursorWidth: '0',
+    cursorWidth: '4',
+    cursorColor: '#e74c3c',
     height: '100'
+});
+
+// move wavesurfer starting point
+wavesurfer.on('seek', function (pos) {
+    start_pos = pos;
 });
 
 $(document).ready(function() {
@@ -217,7 +231,7 @@ function playSound(oct, pitch) {  // polyphony
     source[semitones_index].connect(gainNode[semitones_index]);
     gainNode[semitones_index].connect(context.destination);
     gainNode[semitones_index].gain.value = parseInt($('#volume-slider').slider( "value" )) / 100; // sample volume
-    source[semitones_index].start(0);
+    source[semitones_index].start(0,start_pos * audio_buffer.duration);
   }
 }
 

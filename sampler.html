@@ -21,72 +21,102 @@
   <div class="panel-waveform">
     <div id="waveform">
     </div>
-    <label class="wave-label">
-    </label>
-    <form>
-      <input type="file" name="file" id="file" class="inputfile" accept=".wav,.mp3,.aiff,.aac,.wma,.m4a" />
-      <label for="file"><i class="fa fa-upload" aria-hidden="true"></i> Upload sample</label>
-    </form>
+    <div class="waveform-controls">
+      <label class="wave-label">
+      </label>
+      <form>
+        <input type="file" name="file" id="file" class="inputfile" accept=".wav,.mp3,.aiff,.aac,.wma,.m4a" />
+        <label for="file"><i class="fa fa-upload" aria-hidden="true"></i> Upload sample</label>
+      </form>
+      <div class="volume">
+        <div id="volume-slider"></div>
+        <label><i class="fa fa-volume-up" aria-hidden="true"></i> Volume</label>
+      </div>
+    </div>
   </div>
 
   <div class="panel-controls">
-    <div class="knob-panel">
-      <div class="volume knob-element">
-        <div id="volume-slider"></div>
-        <label>Volume</label>
-      </div>
-    </div>
-    <div class="midi-panel">
+    <div class="midi-panel show-keyboard">
       <div id="oct-1" class="midi-oct">
         <div class="midi-selected"></div>
+        <div class="midi-notes midi-top">
+          <div class="midi-block">
+            <div class="midi-note c-sharp">W</div>
+            <div class="midi-note d-sharp">E</div>
+          </div>
+          <div class="midi-block">
+            <div class="midi-note f-sharp">T</div>
+            <div class="midi-note g-sharp">Y</div>
+            <div class="midi-note a-sharp">U</div>
+          </div>
+        </div>
         <div class="midi-notes">
-          <div class="midi-note c"></div>
-          <div class="midi-note c-sharp"></div>
-          <div class="midi-note d"></div>
-          <div class="midi-note d-sharp"></div>
-          <div class="midi-note e"></div>
-          <div class="midi-note f"></div>
-          <div class="midi-note f-sharp"></div>
-          <div class="midi-note g"></div>
-          <div class="midi-note g-sharp"></div>
-          <div class="midi-note a"></div>
-          <div class="midi-note a-sharp"></div>
-          <div class="midi-note b"></div>
+          <div class="midi-note c">A</div>
+          <div class="midi-note d">S</div>
+          <div class="midi-note e">D</div>
+          <div class="midi-note f">F</div>
+          <div class="midi-note g">G</div>
+          <div class="midi-note a">H</div>
+          <div class="midi-note b">J</div>
         </div>
       </div>
       <div id="oct-2" class="midi-oct">
         <div class="midi-selected selected"></div>
+        <div class="midi-notes midi-top">
+          <div class="midi-block">
+            <div class="midi-note c-sharp">W</div>
+            <div class="midi-note d-sharp">E</div>
+          </div>
+          <div class="midi-block">
+            <div class="midi-note f-sharp">T</div>
+            <div class="midi-note g-sharp">Y</div>
+            <div class="midi-note a-sharp">U</div>
+          </div>
+        </div>
         <div class="midi-notes">
-          <div class="midi-note c"></div>
-          <div class="midi-note c-sharp"></div>
-          <div class="midi-note d"></div>
-          <div class="midi-note d-sharp"></div>
-          <div class="midi-note e"></div>
-          <div class="midi-note f"></div>
-          <div class="midi-note f-sharp"></div>
-          <div class="midi-note g"></div>
-          <div class="midi-note g-sharp"></div>
-          <div class="midi-note a"></div>
-          <div class="midi-note a-sharp"></div>
-          <div class="midi-note b"></div>
+          <div class="midi-note c">A</div>
+          <div class="midi-note d">S</div>
+          <div class="midi-note e">D</div>
+          <div class="midi-note f">F</div>
+          <div class="midi-note g">G</div>
+          <div class="midi-note a">H</div>
+          <div class="midi-note b">J</div>
         </div>
       </div>
       <div id="oct-3" class="midi-oct">
         <div class="midi-selected"></div>
-        <div class="midi-notes">
-          <div class="midi-note c"></div>
-          <div class="midi-note c-sharp"></div>
-          <div class="midi-note d"></div>
-          <div class="midi-note d-sharp"></div>
-          <div class="midi-note e"></div>
-          <div class="midi-note f"></div>
-          <div class="midi-note f-sharp"></div>
-          <div class="midi-note g"></div>
-          <div class="midi-note g-sharp"></div>
-          <div class="midi-note a"></div>
-          <div class="midi-note a-sharp"></div>
-          <div class="midi-note b"></div>
+        <div class="midi-notes midi-top">
+          <div class="midi-block">
+            <div class="midi-note c-sharp">W</div>
+            <div class="midi-note d-sharp">E</div>
+          </div>
+          <div class="midi-block">
+            <div class="midi-note f-sharp">T</div>
+            <div class="midi-note g-sharp">Y</div>
+            <div class="midi-note a-sharp">U</div>
+          </div>
         </div>
+        <div class="midi-notes">
+          <div class="midi-note c">A</div>
+          <div class="midi-note d">S</div>
+          <div class="midi-note e">D</div>
+          <div class="midi-note f">F</div>
+          <div class="midi-note g">G</div>
+          <div class="midi-note a">H</div>
+          <div class="midi-note b">J</div>
+        </div>
+      </div>
+    </div>
+    <div class="help-panel">
+      <div class="keyboard-help">
+        <button id="toggle-keyboard"><i id="toggle-key-icon" class="fa fa-chevron-up" aria-hidden="true"></i> <i class="fa fa-keyboard-o" aria-hidden="true"></i></button>
+      </div>
+      <div class="octave-help show-keyboard">
+        <button class="unclickable">Z</button> octave down
+        <button class="unclickable">X</button> octave up
+      </div>
+      <div class="">
+        <a href="http://leolanzinger.github.io"><i class="fa fa-question-circle-o" aria-hidden="true"></i></a>
       </div>
     </div>
   </div>
