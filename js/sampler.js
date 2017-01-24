@@ -39,7 +39,7 @@ var wavesurfer = WaveSurfer.create({
     container: '#waveform',
     waveColor: '#ecf0f1',
     progressColor: '#2c3e50',
-    barWidth: '2',
+    barWidth: '1',
     cursorWidth: '4',
     cursorColor: '#e74c3c',
     height: '100'
