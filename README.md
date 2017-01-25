@@ -1,4 +1,6 @@
 # Webaudio virtual instruments
+
+[leolanzinger.github.io/webaudio](leolanzinger.github.io/webaudio)
 Webaudio implementation of virtual instruments:
-- Sampler (live demo here [leolanzinger.github.io/webaudio/sampler.html](leolanzinger.github.io/webaudio/sampler.html))
+- Sampler
 ![alt text](https://github.com/leolanzinger/webaudio/blob/master/assets/screenshots/sampler.png "Sampler")
