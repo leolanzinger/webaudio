@@ -24,7 +24,6 @@ $("#file").change(function(el) {
   }
 });
 
-
 // show - unshow keyboard
 $('#toggle-keyboard').click(function() {
   $('.show-keyboard').toggleClass('hidden-keyboard');
@@ -32,6 +31,8 @@ $('#toggle-keyboard').click(function() {
 });
 
 // set sampler variables
+var data, cmd, channel, type, note, velocity;
+var rootKey = 60; // note: 60 C
 var sound_url = 'assets/audio/flute/C4.wav';
 var oct = 2;
 var start_pos = 0;
@@ -63,6 +64,8 @@ $(document).ready(function() {
     handleKeyboard(e.which, 1);
   });
 });
+
+// handle keyboard input
 function handleKeyboard(key, functionType) {
   switch(key) {
     case 90: // z : octave down
@@ -182,6 +185,55 @@ function handleKeyboard(key, functionType) {
   }
 }
 
+// handle midi input
+// request MIDI access
+if (navigator.requestMIDIAccess) {
+    navigator.requestMIDIAccess({
+        sysex: false // this defaults to 'false' and we won't be covering sysex in this article.
+    }).then(onMIDISuccess, onMIDIFailure);
+} else {
+    alert("Sorry, no MIDI support in your browser. Please use your laptop keyboard to play the sampler");
+}
+
+// midi functions
+function onMIDISuccess(midiAccess) {
+   midi = midiAccess;
+   var inputs = midi.inputs.values();
+   for (var input = inputs.next(); input && !input.done; input = inputs.next()) {
+       input.value.onmidimessage = onMIDIMessage;
+   }
+}
+function onMIDIFailure(e) {
+    console.log("No access to MIDI devices or your browser doesn't support WebMIDI API. Please use WebMIDIAPIShim " + e);
+}
+function onMIDIMessage(event) {
+    data = event.data,
+    cmd = data[0] >> 4,
+    channel = data[0] & 0xf,
+    type = data[0] & 0xf0, // channel agnostic message type. Thanks, Phil Burk.
+    note = data[1],
+    velocity = data[2];
+    // with pressure and tilt off
+    // note off: 128, cmd: 8
+    // note on: 144, cmd: 9
+    // pressure / tilt on
+    // pressure: 176, cmd 11:
+    // bend: 224, cmd: 14
+    var pitch = note - rootKey;
+
+    switch (type) {
+        case 144: // noteOn message
+            playSound(pitch, note);
+            break;
+        case 128: // noteOff message
+            stopSound(pitch, note);
+            break;
+    }
+
+    //console.log('data', data, 'cmd', cmd, 'channel', channel);
+    //logger(keyData, 'key data', data);
+}
+
 // set active midi octave
 function setOctave() {
   $('.midi-oct .midi-selected').removeClass('selected');
@@ -191,16 +243,16 @@ function setOctave() {
 // flash pressed note
 function noteDown(note, pitch) {
   $('#oct-' + oct + ' .' + note).css({'background-color' : '#e74c3c'});
-  playSound(oct, pitch);
+  playPcKeySound(oct, pitch);
 }
 
 // flash up note
 function noteUp(note, pitch) {
   $('#oct-' + oct + ' .' + note).css({'background-color' : '#ecf0f1'});
-  stopSound(oct, pitch);
+  stopPcKeySound(oct, pitch);
 }
 
-// webaudio
+// webaudio part
 window.onload = init;
 var context;
 var source = [];
@@ -220,9 +272,12 @@ function init() {
   getSound.send();
 }
 
-function playSound(oct, pitch) {  // polyphony
+function playPcKeySound(oct, pitch) {  // polyphony
   var semitones = ((oct - 2) * 12) + pitch; // sample root is in C
-  var semitones_index = semitones + 12; // no negative indexes
+  var semitones_index = semitones + rootKey; // no negative indexes
+  playSound(semitones, semitones_index);
+}
+function playSound(semitones, semitones_index) {
   if (source[semitones_index] == null) {
     source[semitones_index] = context.createBufferSource();
     source[semitones_index].buffer = audio_buffer;
@@ -235,9 +290,13 @@ function playSound(oct, pitch) {  // polyphony
   }
 }
 
-function stopSound(oct, pitch) {
+function stopPcKeySound(oct, pitch) {
   var semitones = ((oct - 2) * 12) + pitch;
-  var semitones_index = semitones + 12;
+  var semitones_index = semitones + rootKey;
+  stopSound(semitones, semitones_index);
+}
+
+function stopSound(semitones, semitones_index) {
   // fade out stop
   gainNode[semitones_index].gain.setTargetAtTime(0, context.currentTime, 0.015);
   setTimeout(function() {
