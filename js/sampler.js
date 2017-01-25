@@ -33,9 +33,10 @@ $('#toggle-keyboard').click(function() {
 // set sampler variables
 var data, cmd, channel, type, note, velocity;
 var rootKey = 60; // note: 60 C
-var sound_url = 'assets/audio/flute/C4.wav';
+var sound_url = 'assets/audio/flute/flute.wav';
 var oct = 2;
 var start_pos = 0;
+var sustain = false;
 var wavesurfer = WaveSurfer.create({
     container: '#waveform',
     waveColor: '#ecf0f1',
@@ -210,16 +211,19 @@ function onMIDIMessage(event) {
     data = event.data,
     cmd = data[0] >> 4,
     channel = data[0] & 0xf,
-    type = data[0] & 0xf0, // channel agnostic message type. Thanks, Phil Burk.
+    type = data[0] & 0xf0,
     note = data[1],
     velocity = data[2];
     // with pressure and tilt off
     // note off: 128, cmd: 8
     // note on: 144, cmd: 9
+    // sustain: 176 64 vel
     // pressure / tilt on
     // pressure: 176, cmd 11:
     // bend: 224, cmd: 14
     var pitch = note - rootKey;
+
+    console.log(data);
 
     switch (type) {
         case 144: // noteOn message
@@ -228,10 +232,16 @@ function onMIDIMessage(event) {
         case 128: // noteOff message
             stopSound(pitch, note);
             break;
+        case 176: // sustain down
+            if (velocity > 0) {
+              sustain = true;
+            }
+            else {
+              sustain = false;
+              stopAllSounds();
+            }
+            break;
     }
-
-    //console.log('data', data, 'cmd', cmd, 'channel', channel);
-    //logger(keyData, 'key data', data);
 }
 
 // set active midi octave
@@ -298,11 +308,24 @@ function stopPcKeySound(oct, pitch) {
 
 function stopSound(semitones, semitones_index) {
   // fade out stop
-  gainNode[semitones_index].gain.setTargetAtTime(0, context.currentTime, 0.015);
-  setTimeout(function() {
-    source[semitones_index].stop();
-    source[semitones_index] = null;
-  }, 50);
+  if (sustain == false) {
+    gainNode[semitones_index].gain.setTargetAtTime(0, context.currentTime, 0.015);
+    setTimeout(function() {
+      source[semitones_index].stop();
+      source[semitones_index] = null;
+    }, 50);
+  }
+}
+
+function stopAllSounds() {
+  gainNode.forEach(function(node, i) {
+    if (gainNode[i] != null) {
+      setTimeout(function() {
+        gainNode[i].stop();
+        gainNode[i] = null;
+      }, 50);
+    }
+  });
 }
 
 changeVolume = function(value) {
