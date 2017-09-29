@@ -306,7 +306,7 @@ function stopPcKeySound(oct, pitch) {
   stopSound(semitones, semitones_index);
 }
 
-function stopSound(semitones_index) {
+function stopSound(semitones, semitones_index) {
   // fade out stop
   if (sustain == false) {
     gainNode[semitones_index].gain.setTargetAtTime(0, context.currentTime, 0.015);
