@@ -1,9 +1,8 @@
-# Webaudio virtual instruments
+# React + Vite
 
-[http://leolanzinger.github.io/webaudio](http://leolanzinger.github.io/webaudio)
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-Some musical instrument experiments built using WebAudio technology:
-- Sampler:
+Currently, two official plugins are available:
 
-
-![alt text](https://github.com/leolanzinger/webaudio/blob/master/assets/screenshots/sampler.png "Sampler")
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh

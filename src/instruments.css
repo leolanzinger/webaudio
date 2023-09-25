@@ -1,0 +1,171 @@
+.panel-light {
+    border-radius: 20px;
+    border: 1px solid #AAA;
+    background: linear-gradient(180deg, #DDDDDF 0%, #B6B6B8 100%);
+    box-shadow: 2px 2px 2px 0px #FFF inset;
+    display: block;
+    box-sizing: border-box;
+}
+
+/* Button */
+.button {
+    padding: 8px 16px;
+    text-align: center;
+    border-radius: 12px;
+    cursor: pointer;
+}
+
+.button:active, .button.active {
+    background: linear-gradient(180deg, #BBBBBD 0%, #B1B1B3 100%);
+    box-shadow: 2px 2px 2px 0px rgba(0, 0, 0, 0.60) inset, 1px 1px 2px 0px rgba(0, 0, 0, 0.25) inset, 1px 1px 2px 0px rgba(0, 0, 0, 0.50) inset, -2px -2px 2px 0px rgba(255, 255, 255, 0.40) inset, -1px -1px 2px 0px rgba(255, 255, 255, 0.25) inset, -1px -1px 1px 0px rgba(255, 255, 255, 0.80) inset;
+}
+
+/* Screen */
+.screen {
+    border-radius: 4px;
+    background: #0B0D15;
+}
+
+/* Progress */
+.progress {
+    border-radius: 4px;
+}
+
+.progress .empty {
+    width: 100%;
+    height: 100%;
+    border: 1px solid #818F96;
+    background: #CCDCE7;
+}
+
+.progress .full {
+    width: 100%;
+    height: 100%;
+    border: 1px solid #818F96;
+    background: rgba(0, 0, 0, 0.80);
+}
+
+/* Keys */
+.panel-light.key {
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.key-button {
+    width: 50%;
+    height: 80%;
+    border-radius: 12px;
+    border: 1px solid #AAA;
+    background: linear-gradient(180deg, #DDDDDF 0%, #B6B6B8 100%);
+    box-shadow: 2px 2px 2px 0px #FFF inset;
+}
+
+.key:active .key-button, .key.active .key-button {
+    background: linear-gradient(180deg, #BBBBBD 0%, #B1B1B3 100%);
+    box-shadow: 2px 2px 2px 0px rgba(0, 0, 0, 0.60) inset, 1px 1px 2px 0px rgba(0, 0, 0, 0.25) inset, 1px 1px 2px 0px rgba(0, 0, 0, 0.50) inset, -2px -2px 2px 0px rgba(255, 255, 255, 0.40) inset, -1px -1px 2px 0px rgba(255, 255, 255, 0.25) inset, -1px -1px 1px 0px rgba(255, 255, 255, 0.80) inset;
+}
+
+.key-sharp {
+    aspect-ratio: 1 / 1;
+}
+
+.key-sharp .key-button {
+    aspect-ratio: 1 / 1;
+    height: 50%;
+    width: auto;
+    border-radius: 100px;
+    background: linear-gradient(180deg, #4E5877 0%, #4E5877 100%);
+    box-shadow: 1px 1px 1px 0px #FFF inset;
+}
+
+.key-sharp:active .key-button, .key-sharp.active .key-button {
+    background: linear-gradient(180deg, #4E5877 0%, #4E5877 100%);
+    box-shadow: 1px 1px 1px 0px rgba(0, 0, 0, 0.25) inset, 1px 1px 1px 0px rgba(0, 0, 0, 0.50) inset, -1px -1px 1px 0px rgba(255, 255, 255, 0.40) inset, -1px -1px 1px 0px rgba(255, 255, 255, 0.25) inset, -1px -1px 1px 0px rgba(255, 255, 255, 0.80) inset;
+}
+
+.key-sharp.key-sharp-right, .key-sharp.key-sharp-left {
+    aspect-ratio: 2 / 1;
+}
+
+.key-sharp.key-sharp-right .key-button {
+    margin-left: 20px;
+}
+
+.key-sharp.key-sharp-left .key-button {
+    margin-right: 20px;
+}
+
+/* Sampler */
+
+.sampler {
+    width: 80%;
+    height: fit-content;
+    padding: 40px 80px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.sampler-top-panel {
+    display: flex;
+    width: 100%;
+    height: fit-content;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.octave-panel {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    width: 160px;
+}
+
+.octave-panel div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.sampler .screen {
+    width: 50%;
+    height: 160px;
+    flex-shrink: 0;
+}
+
+.sampler-bottom-panel {
+    display: flex;
+    width: 100%;
+    height: fit-content;
+    flex-direction: column;
+    align-items: center;
+    justify-content: start;
+    gap: 16px;
+}
+
+.sampler-bottom-panel .progress-panel {
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    align-content: start;
+}
+
+.keyboard {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.keyboard .keys {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+}
