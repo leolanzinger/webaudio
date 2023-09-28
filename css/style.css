@@ -1,14 +1,17 @@
 body, html {
-  display: block;
-  width: 100vh;
+  display: flex;
+  width: 100%;
   background: #ecf0f1;
+  height: 100vh;
+  align-items: center;
+  justify-content: center;
 }
 
 * {
   font-family: 'Helvetica Neue', helvetica, sans-serif;
   color: #ecf0f1;
-  font-weight: 100;
-  letter-spacing: .1em;
+  font-weight: 200;
+  letter-spacing: 0;
 }
 
 *:focus {
@@ -38,10 +41,13 @@ button:hover, form label:hover, .clickable:hover {
   top: 0;
   left: 0;
   padding: 5px;
+  margin: 20px;
 }
 
-.home-link i {
+.home-link img {
   color: #2c3e50;
+  height: 40px;
+  width: 40px;
 }
 
 .inst-list {
@@ -55,10 +61,13 @@ button:hover, form label:hover, .clickable:hover {
 .inst {
   position: relative;
   box-sizing: border-box;
+  width: 450px;
+  height: 550px;
   padding: 20px;
   margin: 5px;
-  border-radius: 10px;
+  border-radius: 4px;
   transition: opacity 0.2s;
+  box-shadow: 0px 8px 40px 0px rgba(0, 0, 61, 0.05), 0px 12px 32px -16px rgba(0, 0, 0, 0.05);
 }
 
 .inst:hover {
@@ -72,6 +81,7 @@ button:hover, form label:hover, .clickable:hover {
 
 .inst img {
   border: 1px solid #ecf0f1;
+  width: 400px;
 }
 
 .inst-list a {
@@ -83,15 +93,23 @@ button:hover, form label:hover, .clickable:hover {
   box-sizing: border-box;
   bottom: 0;
   right: 0;
-  padding: 10px;
+  margin: 8px 40px;
+  padding: 20px;
+  width: 500px;
 }
 
 .credits i {
   color: #2c3e50;
 }
 
+.credits p, .credits a {
+  color: #2c3e50;
+  font-weight: 400;
+  text-align: left;
+}
+
 .panel {
-  position: absolute;
+  /* position: absolute; */
   display: block;
   box-sizing: border-box;
   top: 40px;
@@ -99,17 +117,23 @@ button:hover, form label:hover, .clickable:hover {
   right: 0;
   margin: 0 auto;
   width: 900px;
-  padding: 0 20px 20px 20px;
-  border-radius: 5px;
+  padding: 40px 80px;
+  border-radius: 4px;
+  box-shadow: 0px 8px 20px 0px rgba(0, 0, 61, 0.2), 0px 12px 32px -16px rgba(0, 0, 0, 0.2);
 }
 
 .panel.drummachine {
-  width: 1050px;
+  width: fit-content;
+  padding: 40px 80px;
+}
+
+.panel.sampler {
+  width: 1020px;
 }
 
 .panel-title h1 {
   font-size: 3em;
-  font-weight: 100;
+  font-weight: 200;
   color: #ecf0f1;
   margin: 0;
 }
@@ -179,7 +203,7 @@ button:hover, form label:hover, .clickable:hover {
   position: relative;
   box-sizing: border-box;
   margin-top: 10px;
-  font-weight: 100;
+  font-weight: 200;
 }
 
 .controls form {
@@ -192,7 +216,7 @@ button:hover, form label:hover, .clickable:hover {
   border: 1px solid #ecf0f1;
   color: #ecf0f1;
   padding: 5px;
-  font-weight: 100;
+  font-weight: 200;
   text-transform: uppercase;
   font-size: .8em;
 }

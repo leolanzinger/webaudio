@@ -10,7 +10,7 @@
 </head>
 <body>
 <a class="home-link" href="javascript:history.back()">
-  <i class="fa fa-home fa-2x" aria-hidden="true"></i>
+  <img src="assets/icons/arrow-left.svg" />
 </a>
 <div class="panel drummachine">
 
@@ -22,6 +22,7 @@
       <div class="drum-type">
       </div>
       <div class="sequence">
+        <div class="step 0"></div>
         <div class="step 1"></div>
         <div class="step 2"></div>
         <div class="step 3"></div>
@@ -37,30 +38,18 @@
         <div class="step 13"></div>
         <div class="step 14"></div>
         <div class="step 15"></div>
-        <div class="step 16"></div>
-        <div class="step 17"></div>
-        <div class="step 18"></div>
-        <div class="step 19"></div>
-        <div class="step 20"></div>
-        <div class="step 21"></div>
-        <div class="step 22"></div>
-        <div class="step 23"></div>
-        <div class="step 24"></div>
-        <div class="step 25"></div>
-        <div class="step 26"></div>
-        <div class="step 27"></div>
-        <div class="step 28"></div>
-        <div class="step 29"></div>
-        <div class="step 30"></div>
-        <div class="step 31"></div>
-        <div class="step 32"></div>
       </div>
     </div>
     <div id="0" class="drum">
       <div class="drum-type">
         Kick
       </div>
-      <div class="sequence">
+      <form class="upload upload-kick">
+        <input type="file" name="kick-file" id="kick-file" class="inputfile" accept=".wav,.mp3,.aiff,.aac,.wma,.m4a" />
+        <label for="kick-file"><i class='fa fa-refresh'></i></label>
+      </form>
+      <div class="sequence kick">
+        <div class="step 0"></div>
         <div class="step 1"></div>
         <div class="step 2"></div>
         <div class="step 3"></div>
@@ -76,30 +65,18 @@
         <div class="step 13"></div>
         <div class="step 14"></div>
         <div class="step 15"></div>
-        <div class="step 16"></div>
-        <div class="step 17"></div>
-        <div class="step 18"></div>
-        <div class="step 19"></div>
-        <div class="step 20"></div>
-        <div class="step 21"></div>
-        <div class="step 22"></div>
-        <div class="step 23"></div>
-        <div class="step 24"></div>
-        <div class="step 25"></div>
-        <div class="step 26"></div>
-        <div class="step 27"></div>
-        <div class="step 28"></div>
-        <div class="step 29"></div>
-        <div class="step 30"></div>
-        <div class="step 31"></div>
-        <div class="step 32"></div>
       </div>
     </div>
     <div id="1" class="drum">
       <div class="drum-type">
         Snare
       </div>
-      <div class="sequence">
+      <form class="upload upload-snare">
+        <input type="file" name="snare-file" id="snare-file" class="inputfile" accept=".wav,.mp3,.aiff,.aac,.wma,.m4a" />
+        <label for="snare-file"><i class='fa fa-refresh'></i></label>
+      </form>
+      <div class="sequence snare">
+        <div class="step 0"></div>
         <div class="step 1"></div>
         <div class="step 2"></div>
         <div class="step 3"></div>
@@ -115,30 +92,18 @@
         <div class="step 13"></div>
         <div class="step 14"></div>
         <div class="step 15"></div>
-        <div class="step 16"></div>
-        <div class="step 17"></div>
-        <div class="step 18"></div>
-        <div class="step 19"></div>
-        <div class="step 20"></div>
-        <div class="step 21"></div>
-        <div class="step 22"></div>
-        <div class="step 23"></div>
-        <div class="step 24"></div>
-        <div class="step 25"></div>
-        <div class="step 26"></div>
-        <div class="step 27"></div>
-        <div class="step 28"></div>
-        <div class="step 29"></div>
-        <div class="step 30"></div>
-        <div class="step 31"></div>
-        <div class="step 32"></div>
       </div>
     </div>
     <div id="2" class="drum">
       <div class="drum-type">
         Hi-hat
       </div>
-      <div class="sequence">
+      <form class="upload upload-hihat">
+        <input type="file" name="hihat-file" id="hihat-file" class="inputfile" accept=".wav,.mp3,.aiff,.aac,.wma,.m4a" />
+        <label for="hihat-file"><i class='fa fa-refresh'></i></label>
+      </form>
+      <div class="sequence hihat">
+        <div class="step 0"></div>
         <div class="step 1"></div>
         <div class="step 2"></div>
         <div class="step 3"></div>
@@ -154,30 +119,18 @@
         <div class="step 13"></div>
         <div class="step 14"></div>
         <div class="step 15"></div>
-        <div class="step 16"></div>
-        <div class="step 17"></div>
-        <div class="step 18"></div>
-        <div class="step 19"></div>
-        <div class="step 20"></div>
-        <div class="step 21"></div>
-        <div class="step 22"></div>
-        <div class="step 23"></div>
-        <div class="step 24"></div>
-        <div class="step 25"></div>
-        <div class="step 26"></div>
-        <div class="step 27"></div>
-        <div class="step 28"></div>
-        <div class="step 29"></div>
-        <div class="step 30"></div>
-        <div class="step 31"></div>
-        <div class="step 32"></div>
       </div>
     </div>
     <div id="3" class="drum">
       <div class="drum-type">
         Crash
       </div>
-      <div class="sequence">
+      <form class="upload upload-crash">
+        <input type="file" name="crash-file" id="crash-file" class="inputfile" accept=".wav,.mp3,.aiff,.aac,.wma,.m4a" />
+        <label for="crash-file"><i class='fa fa-refresh'></i></label>
+      </form>
+      <div class="sequence crash">
+        <div class="step 0"></div>
         <div class="step 1"></div>
         <div class="step 2"></div>
         <div class="step 3"></div>
@@ -193,34 +146,21 @@
         <div class="step 13"></div>
         <div class="step 14"></div>
         <div class="step 15"></div>
-        <div class="step 16"></div>
-        <div class="step 17"></div>
-        <div class="step 18"></div>
-        <div class="step 19"></div>
-        <div class="step 20"></div>
-        <div class="step 21"></div>
-        <div class="step 22"></div>
-        <div class="step 23"></div>
-        <div class="step 24"></div>
-        <div class="step 25"></div>
-        <div class="step 26"></div>
-        <div class="step 27"></div>
-        <div class="step 28"></div>
-        <div class="step 29"></div>
-        <div class="step 30"></div>
-        <div class="step 31"></div>
-        <div class="step 32"></div>
       </div>
     </div>
   </div>
   <div class="panel-controls">
-    <div class="controls">
+    <div class="controls drum-controls">
       <button id="play-button">
         <i class="fa fa-play"></i> Play
       </button>
       <div class="volume">
         <div id="volume-slider"></div>
         <label><i class="fa fa-volume-up" aria-hidden="true"></i> Volume</label>
+      </div>
+      <div  class="bpm">
+        <label for="bpm">BPM</label>
+        <input type="number" id="bpm" name="bpm" min="20" value="120" max="360">
       </div>
     </div>
   </div>

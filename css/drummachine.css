@@ -54,9 +54,13 @@
   background-color: #f1c40f;
 }
 
-.step.active.playing {
+.step.armed {
   background-color: #e74c3c;
 }
+
+/* .step.active.playing {
+  background-color: #e74c3c;
+} */
 
 .disabled {
   opacity: 0.8;
@@ -76,4 +80,49 @@
   padding-top: 10px;
   display: flex;
   justify-content: center;
+  align-items: center;
+  gap: 40px;
+}
+
+.drum-controls .volume {
+  margin-left: 0;
+}
+
+.bpm {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.bpm label {
+  display: block;
+  margin-bottom: 10px;
+}
+
+.bpm input[type="number"] {
+  width: 60px;
+  padding: 5px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.upload {
+  margin-right: 16px;
+}
+
+.inputfile {
+  display: none;
+}
+
+.upload label {
+  background-color: transparent;
+  border: 1px solid #ecf0f1;
+  color: #ecf0f1;
+  padding: 5px;
+  text-transform: uppercase;
+  font-size: .8em;
 }

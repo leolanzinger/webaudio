@@ -1,6 +1,6 @@
 // JQUERY UI WIDGETS
 $( "#volume-slider" ).slider({
-  value: 100,
+  value: 50,
   slide: function( event, ui ) {
     changeVolume(ui.value)
   }
@@ -33,7 +33,7 @@ $('#toggle-keyboard').click(function() {
 // set sampler variables
 var data, cmd, channel, type, note, velocity;
 var rootKey = 60; // note: 60 C
-var sound_url = 'assets/audio/flute/flute.wav';
+var sound_url = 'assets/audio/organelle/C2.wav';
 var oct = 2;
 var start_pos = 0;
 var sustain = false;
